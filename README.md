@@ -1,12 +1,10 @@
-# AstroNvim Template
+# NeoVim Configuration
 
-**NOTE:** This is for AstroNvim v4+
-
-A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
+My Neovim Configuration, based on [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 
 ## 🛠️ Installation
 
-#### Make a backup of your current nvim and shared folder
+### Make a backup of current nvim configuration folders *(if you have any)*
 
 ```shell
 mv ~/.config/nvim ~/.config/nvim.bak
@@ -15,20 +13,37 @@ mv ~/.local/state/nvim ~/.local/state/nvim.bak
 mv ~/.cache/nvim ~/.cache/nvim.bak
 ```
 
-#### Create a new user repository from this template
-
-Press the "Use this template" button above to create a new repository to store your user configuration.
-
-You can also just clone this repository directly if you do not want to track your user configuration in GitHub.
-
-#### Clone the repository
+### Remove current nvim configuration folders *(if you have any)*
 
 ```shell
-git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.cache/nvim
 ```
 
-#### Start Neovim
+### Clone the repository
+
+```shell
+git clone https://github.com/Cubik65536/neovim-config ~/.config/nvim
+```
+
+### Start Neovim
 
 ```shell
 nvim
+```
+
+## 🛠️ LSPs
+
+This configurations have the following LSPs installed, please follow the instructions to install them.
+
+### [Racket](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#racket_langserver)
+
+<https://github.com/jeapostrophe/racket-langserver>
+
+Install via:
+
+```shell
+raco pkg install racket-langserver
 ```
