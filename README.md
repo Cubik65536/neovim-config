@@ -47,3 +47,13 @@ Install via:
 ```shell
 raco pkg install racket-langserver
 ```
+
+### [Java](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#java_language_server)
+
+<https://github.com/georgewfraser/java-language-server>
+
+Install via Mason (`MasonInstall java-language-server`).
+
+#### Note
+
+You need to have a JDK and Maven installed.
