@@ -1,85 +1,51 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- You can also add or configure plugins by creating files in this `plugins/` folder
 -- Here are some examples:
 
 ---@type LazySpec
 return {
-
-  -- == Examples of Adding Plugins ==
-
-  "andweeb/presence.nvim",
+  -- Command Menu
   {
-    "ray-x/lsp_signature.nvim",
-    event = "BufRead",
-    config = function() require("lsp_signature").setup() end,
-  },
+    "gelguy/wilder.nvim",
+    lazy = false,
+    init = function ()
+      local wilder = require("wilder")
 
-  -- == Examples of Overriding Plugins ==
-
-  -- customize alpha options
-  {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      -- customize the dashboard header
-      opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
+      local gradient = {
+        "#4569ee", "#3987f9", "#2da3f3", "#26bce1", "#26d3c9",
+        "#2ee5ae", "#3ff393", "#57fb7a", "#74fe63", "#95fb51",
+        "#b5f242", "#d3e436", "#ecd12e", "#feb927" ,"#ff9f22",
+        "#ff821d", "#f96519", "#e54813", "#cb2f0d"
       }
-      return opts
-    end,
-  },
 
-  -- You can disable default plugins as follows:
-  { "max397574/better-escape.nvim", enabled = false },
+      for i, fg in ipairs(gradient) do
+        gradient[i] = wilder.make_hl('WilderGradient' .. i, 'Pmenu', {{a = 1}, {a = 1}, {foreground = fg}})
+      end
 
-  -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
-  {
-    "L3MON4D3/LuaSnip",
-    config = function(plugin, opts)
-      require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom luasnip configuration such as filetype extend or custom snippets
-      local luasnip = require "luasnip"
-      luasnip.filetype_extend("javascript", { "javascriptreact" })
-    end,
-  },
+      wilder.setup({modes = {':', '/', '?'}})
 
-  {
-    "windwp/nvim-autopairs",
-    config = function(plugin, opts)
-      require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom autopairs configuration such as custom rules
-      local npairs = require "nvim-autopairs"
-      local Rule = require "nvim-autopairs.rule"
-      local cond = require "nvim-autopairs.conds"
-      npairs.add_rules(
-        {
-          Rule("$", "$", { "tex", "latex" })
-            -- don't add a pair if the next character is %
-            :with_pair(cond.not_after_regex "%%")
-            -- don't add a pair if  the previous character is xxx
-            :with_pair(
-              cond.not_before_regex("xxx", 3)
-            )
-            -- don't move right when repeat character
-            :with_move(cond.none())
-            -- don't delete if the next character is xx
-            :with_del(cond.not_after_regex "xx")
-            -- disable adding a newline when you press <cr>
-            :with_cr(cond.none()),
-        },
-        -- disable for .vim files, but it work for another filetypes
-        Rule("a", "a", "-vim")
-      )
-    end,
+      wilder.set_option('renderer', wilder.popupmenu_renderer(
+        wilder.popupmenu_palette_theme({
+          -- 'single', 'double', 'rounded' or 'solid'
+          -- can also be a list of 8 characters, see :h wilder#popupmenu_palette_theme() for more details
+          border = 'rounded',
+          max_height = '75%',      -- max height of the palette
+          min_height = 0,          -- set to the same as 'max_height' for a fixed height window
+          prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
+          reverse = 0,             -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
+
+          highlights = {
+            gradient = gradient, -- must be set
+            -- selected_gradient key can be set to apply gradient highlighting for the selected candidate.
+          },
+          highlighter = wilder.highlighter_with_gradient({
+            wilder.basic_highlighter(), -- or wilder.lua_fzy_highlighter(),
+          }),
+          left = {' ', wilder.popupmenu_devicons()},
+          right = {' ', wilder.popupmenu_scrollbar()},
+        })
+      ))
+    end
   },
 }
