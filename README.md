@@ -48,12 +48,7 @@ Install via:
 raco pkg install racket-langserver
 ```
 
-### [Java](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#java_language_server)
+### [Java](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jdtls)
 
-<https://github.com/georgewfraser/java-language-server>
+<https://github.com/eclipse-jdtls/eclipse.jdt.ls>
 
-Install via Mason (`MasonInstall java-language-server`).
-
-#### Note
-
-You need to have a JDK and Maven installed.
