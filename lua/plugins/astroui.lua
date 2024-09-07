@@ -9,12 +9,14 @@
 return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
-  opts = {
+  opts = function(_, opts)
+    local oxocarbon = require("oxocarbon").oxocarbon
+
     -- change colorscheme
-    -- colorscheme = "astrodark",
-    colorscheme = "oxocarbon",
+    -- opts.colorscheme = "astrodark"
+    opts.colorscheme = "oxocarbon"
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
-    highlights = {
+    opts.highlights = {
       init = { -- this table overrides highlights in all themes
         -- Normal
         Normal = { bg = "none" },
@@ -26,8 +28,6 @@ return {
         FloatBorder = { bg = "none" },
         FloatTitle = { fg = "#F2F3F5", bg = "none" },
         LineNr = { bg = "none" },
-        CursorLine = { bg = "none" },
-        CursorLineNr = { bg = "none" },
         -- WinBar
         WinBar = { bg = "none" },
         WinSeparator = { fg = "#F2F3F5", bg = "none" },
@@ -91,13 +91,43 @@ return {
         NotifyDEBUGBorder = { bg = "none" },
         NotifyTRACEBorder = { bg = "none" },
         NotifyBackground = { bg = "#000000" },
+        -- Autocompletion
+        CmpItemAbbr = {fg = "#adadad", bg = oxocarbon.none },
+        CmpItemAbbrMatch = {fg = oxocarbon.base05, bg = oxocarbon.none, bold = true },
+        CmpItemAbbrMatchFuzzy = {fg = oxocarbon.base04, bg = oxocarbon.none, bold = true },
+        CmpItemMenu = {fg = oxocarbon.base04, bg = oxocarbon.none, italic = true },
+        CmpItemKindInterface = {fg = oxocarbon.base08, bg = oxocarbon.base01 },
+        CmpItemKindColor = {fg = oxocarbon.base08, bg = oxocarbon.base01 },
+        CmpItemKindTypeParameter = {fg = oxocarbon.base08, bg = oxocarbon.base01 },
+        CmpItemKindText = {fg = oxocarbon.base09, bg = oxocarbon.base01 },
+        CmpItemKindEnum = {fg = oxocarbon.base09, bg = oxocarbon.base01 },
+        CmpItemKindKeyword = {fg = oxocarbon.base09, bg = oxocarbon.base01 },
+        CmpItemKindConstant = {fg = oxocarbon.base10, bg = oxocarbon.base01 },
+        CmpItemKindConstructor = {fg = oxocarbon.base10, bg = oxocarbon.base01 },
+        CmpItemKindReference = {fg = oxocarbon.base10, bg = oxocarbon.base01 },
+        CmpItemKindFunction = {fg = oxocarbon.base11, bg = oxocarbon.base01 },
+        CmpItemKindStruct = {fg = oxocarbon.base11, bg = oxocarbon.base01 },
+        CmpItemKindClass = {fg = oxocarbon.base11, bg = oxocarbon.base01 },
+        CmpItemKindModule = {fg = oxocarbon.base11, bg = oxocarbon.base01 },
+        CmpItemKindOperator = {fg = oxocarbon.base11, bg = oxocarbon.base01 },
+        CmpItemKindField = {fg = oxocarbon.base12, bg = oxocarbon.base01 },
+        CmpItemKindProperty = {fg = oxocarbon.base12, bg = oxocarbon.base01 },
+        CmpItemKindEvent = {fg = oxocarbon.base12, bg = oxocarbon.base01 },
+        CmpItemKindUnit = {fg = oxocarbon.base13, bg = oxocarbon.base01 },
+        CmpItemKindSnippet = {fg = oxocarbon.base13, bg = oxocarbon.base01 },
+        CmpItemKindFolder = {fg = oxocarbon.base13, bg = oxocarbon.base01 },
+        CmpItemKindVariable = {fg = oxocarbon.base14, bg = oxocarbon.base01 },
+        CmpItemKindFile = {fg = oxocarbon.base14, bg = oxocarbon.base01 },
+        CmpItemKindMethod = {fg = oxocarbon.base15, bg = oxocarbon.base01 },
+        CmpItemKindValue = {fg = oxocarbon.base15, bg = oxocarbon.base01 },
+        CmpItemKindEnumMember = {fg = oxocarbon.base15, bg = oxocarbon.base01 },
       },
       astrodark = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
       },
-    },
+    }
     -- Icons can be configured throughout the interface
-    icons = {
+    opts.icons = {
       -- configure the loading of the lsp in the status line
       LSPLoading1 = "⠋",
       LSPLoading2 = "⠙",
@@ -109,6 +139,7 @@ return {
       LSPLoading8 = "⠧",
       LSPLoading9 = "⠇",
       LSPLoading10 = "⠏",
-    },
-  },
+    }
+    return opts
+  end,
 }

@@ -37,6 +37,12 @@ return {
       return opts
     end,
   },
+
+  -- Autocompletion Menu Item Style
+  {
+    "onsails/lspkind.nvim",
+    lazy = false,
+  },
   
   -- Command Menu
   {
