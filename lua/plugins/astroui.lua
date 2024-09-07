@@ -11,19 +11,23 @@ return {
   ---@type AstroUIOpts
   opts = {
     -- change colorscheme
-    colorscheme = "astrodark",
+    -- colorscheme = "astrodark",
+    colorscheme = "oxocarbon",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
         -- Normal
         Normal = { bg = "none" },
-        SignColumn = { bg = "none" },
-        FoldColumn = { bg = "none" },
         NormalFloat = { bg = "none" },
         NormalNC = { bg = "none" },
+        SignColumn = { bg = "none" },
+        FoldColumn = { bg = "none" },
         NormalSB = { bg = "none" },
         FloatBorder = { bg = "none" },
         FloatTitle = { fg = "#F2F3F5", bg = "none" },
+        LineNr = { bg = "none" },
+        CursorLine = { bg = "none" },
+        CursorLineNr = { bg = "none" },
         -- WinBar
         WinBar = { bg = "none" },
         WinSeparator = { fg = "#F2F3F5", bg = "none" },
