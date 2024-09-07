@@ -1,4 +1,4 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
@@ -49,6 +49,16 @@ return {
         -- navigate buffer tabs
         ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+
+        -- smart splits
+        ["<A-Up>"] = { function() require("smart-splits").resize_up() end, desc = "Resize split up" },
+        ["<A-Down>"] = { function() require("smart-splits").resize_down() end, desc = "Resize split down" },
+        ["<A-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" },
+        ["<A-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" },
+
+        -- undo/redo edit
+        ["<C-u>"] = { ":undo<cr>", desc = "Undo" },
+        ["<C-r>"] = { ":redo<cr>", desc = "Redo" },
 
         -- mappings seen under group name "Buffer"
         ["<Leader>bd"] = {
